@@ -1,0 +1,10 @@
+__pycache__
+.hypothesis
+*.pyc
+
+dask-worker-space
+.ipynb_checkpoints
+.vscode
+/dist
+
+*.DS_Store

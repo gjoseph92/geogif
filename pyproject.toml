@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "geogif"
+version = "0.1.0"
+description = "Render xarray timestacks into GIFs"
+authors = ["Gabe Joseph <gjoseph92@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7.1"
+dask = {extras = ["delayed"], version = "^2021.4.1"}
+numpy = "^1.20.2"
+Pillow = "^8.2.0"
+matplotlib = "^3.4.1"
+xarray = "^0.17.0"
+pytest = {version = "^6.2.3", optional = true}
+hypothesis = {version = "^6.10.1", optional = true}
+ipython = {version = "^7.23.0", optional = true}
+typing-extensions = "^3.7.4"
+
+[tool.poetry.dev-dependencies]
+jupyterlab = "^3.0.14"
+distributed = "^2021.4.1"
+ipython = "^7.23.0"
+black = "^21.4b2"
+flake8 = "^3.9.1"
+shed = "^0.3.4"
+
+[tool.poetry.extras]
+test = [
+  "pytest",
+  "hypothesis",
+  "ipython",
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
