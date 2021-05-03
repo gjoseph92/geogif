@@ -84,7 +84,7 @@ def gif(
     """
     Render a `~xarray.DataArray` timestack (``time``, ``band``, ``y``, ``x``) into a GIF.
 
-    If the `~xarray.DataArray` contains a `dask.Array`, use `dgif` (delayed-GIF) instead.
+    If the `~xarray.DataArray` contains a `dask.array.Array`, use `dgif` (delayed-GIF) instead.
 
     The `~xarray.DataArray` must have 1 or 3 bands.
 
@@ -147,17 +147,19 @@ def gif(
 
         Otherwise, returns None, and the GIF data is written to ``to``.
 
-    Examples
-    --------
-    Generate a GIF and show it in your notebook:
+    Example
+    -------
+    >>> # Generate a GIF and show it in your notebook:
     >>> stackstac.gif(arr, date_format="Year: %Y")
 
-    Write the GIF to a file, with no timestamp printed:
+    >>> # Write the GIF to a file, with no timestamp printed:
     >>> stackstac.gif(arr, to="animation.gif", fps=24, date_format=None)
 
-    Show a colormapped GIF of single-band data in your notebook,
-    with the timestamp font in black and no background behind it:
-    >>> stackstac.gif(arr.sel(band="ndvi"), cmap="YlGn", date_color=(0, 0, 0), date_bg=None)
+    >>> # Show a colormapped GIF of single-band data in your notebook,
+    >>> # with the timestamp font in black and no background behind it:
+    >>> stackstac.gif(
+    ...     arr.sel(band="ndvi"), cmap="YlGn", date_color=(0, 0, 0), date_bg=None
+    ... )
     """
     if isinstance(arr.data, da.Array):
         raise TypeError("DataArray contains delayed data; use `dgif` instead.")
@@ -278,7 +280,7 @@ def dgif(
     date_bg: tuple[int, int, int] | None = (0, 0, 0),
 ) -> Delayed:
     """
-    Turn a dask-backed `~xarray.DataArray` timestack into a GIF, as a `dask.Delayed` object.
+    Turn a dask-backed `~xarray.DataArray` timestack into a GIF, as a `~dask.delayed.Delayed` object.
 
     The `~xarray.DataArray` must have 1 or 3 bands, and dimensions in
     (``time``, [optional ``band``], ``y``, ``x``) order.
@@ -352,15 +354,15 @@ def dgif(
 
     Examples
     --------
-    Compute a GIF on the cluster and show it in your notebook:
+    >>> # Compute a GIF on the cluster and show it in your notebook:
     >>> stackstac.dgif(arr, date_format="Year: %Y").compute()
 
-    Compute a GIF on the cluster, get back the bytes, and write them to a file:
+    >>> # Compute a GIF on the cluster, get back the bytes, and write them to a file:
     >>> gif_data = stackstac.dgif(arr, bytes=True).compute()
     >>> with open("animation.gif", "wb") as f:
     ...     f.write(gif_data)
 
-    Compute a GIF on the cluster, and write it to an S3 bucket:
+    >>> # Compute a GIF on the cluster, and write it to an S3 bucket:
     >>> import fsspec
     >>> import dask.delayed
     >>> bucket = dask.delayed(fsspec.get_mapper('s3://my-sweet-gifs/latest'))
