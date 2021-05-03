@@ -7,7 +7,7 @@ from geogif import gif
 gif(data_array)
 ```
 
-![Animation of shoreline moving on the coast of Cape Cod](capecod.gif)
+![Animation of shoreline moving on the coast of Cape Cod](docs/capecod.gif)
 
 The "geo" part is a lie, actually. The arrays don't have to be geospatial in nature. But I called it GeoGIF because:
 
