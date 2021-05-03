@@ -1,5 +1,6 @@
 __pycache__
 .hypothesis
+.pytest_cache
 *.pyc
 
 dask-worker-space

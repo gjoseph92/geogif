@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from string import printable
 
+import dask.array as da
 import hypothesis.strategies as st
 import matplotlib.cm
 import matplotlib.colors
@@ -19,7 +20,7 @@ xy_sizes = st.integers(min_value=1, max_value=64)
 
 
 @st.composite
-def dataarrays(draw) -> xr.DataArray:
+def dataarrays(draw, dask: bool = False) -> xr.DataArray:
     times = draw(time_inds)
     bandnames = draw(bands)
     height, width = draw(xy_sizes), draw(xy_sizes)
@@ -40,6 +41,9 @@ def dataarrays(draw) -> xr.DataArray:
             shape=shape,
         )
     )
+    if dask:
+        arr = da.from_array(arr)
+
     ndim = len(shape)
     dim_names = draw(
         st.lists(st.text(printable), min_size=ndim, max_size=ndim, unique=True)

@@ -9,6 +9,7 @@ import pytest
 
 @contextlib.contextmanager
 def xerr(conditions: list[tuple[bool, Exception]]):
+    "Like `pytest.raises`, for multiple possible errors"
     check = [e for c, e in conditions if c]
     try:
         yield
@@ -26,6 +27,7 @@ def xerr(conditions: list[tuple[bool, Exception]]):
 
 
 def fails(f: Callable[[], Any]) -> bool:
+    "Whether a function raises any error or not"
     try:
         f()
     except Exception:
@@ -35,6 +37,7 @@ def fails(f: Callable[[], Any]) -> bool:
 
 @contextlib.contextmanager
 def ignore(*errs: Exception):
+    "Suppress any of the given error-patterns"
     try:
         yield
     except Exception as e:
