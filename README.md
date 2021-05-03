@@ -5,8 +5,9 @@
 Make GIFs from time-stacked `xarray.DataArray`s (`time`, [optional `band`], `y`, `x`), dead-simple.
 
 ```python
-from geogif import gif
+from geogif import gif, dgif
 gif(data_array)
+dgif(dask_data_array).compute()
 ```
 
 ![Animation of shoreline moving on the coast of Cape Cod](docs/capecod.gif)
