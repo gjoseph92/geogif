@@ -28,7 +28,7 @@ pip install geogif
 
 ## Documentation
 
-See https://geogif.readthedocs.io/en/latest/
+See https://geogif.readthedocs.io/en/latest/.
 
 ## Development
 
