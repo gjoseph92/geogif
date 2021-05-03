@@ -1,4 +1,6 @@
 # GeoGIF
+[![Documentation Status](https://readthedocs.org/projects/geogif/badge/?version=latest)](https://geogif.readthedocs.io/en/latest/?badge=latest)
+
 
 Make GIFs from time-stacked `xarray.DataArray`s (`time`, [optional `band`], `y`, `x`), dead-simple.
 
@@ -23,13 +25,17 @@ The "geo" part is a lie, actually. The arrays don't have to be geospatial in nat
 pip install geogif
 ```
 
+## Documentation
+
+See https://geogif.readthedocs.io/en/latest/
+
 ## Development
 
 GeoGIF is managed by [Poetry](https://python-poetry.org/), so be sure that's installed first. To develop locally, first fork or clone the repo. Then, to set up a virtual environment and install the necessary dependencies:
 
 ```bash
 cd geogif
-poetry install -E tests
+poetry install -E tests -E docs
 ```
 
 ### Running Tests
