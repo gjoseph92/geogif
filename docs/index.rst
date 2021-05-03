@@ -3,18 +3,11 @@ GeoGIF
 
 GeoGIF renders a GIF from a time-stacked `xarray.DataArray` (``time``, [optional ``band``], ``y``, ``x``).
 
-.. autofunction:: geogif.gif
-.. autofunction:: geogif.dgif
+.. image:: capecod.gif
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   api
+   examples
+   GitHub Repository <https://github.com/gjoseph92/geogif>

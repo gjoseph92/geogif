@@ -55,7 +55,7 @@ default_role = "py:obj"
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "insipid"
+html_theme = "furo"
 
 html_theme_options = {
     "globaltoc_maxdepth": -1,
