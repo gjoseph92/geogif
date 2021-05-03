@@ -33,6 +33,8 @@ flake8 = "^3.9.1"
 shed = "^0.3.4"
 sphinx-autobuild = "^2021.3.14"
 Bottleneck = "^1.3.2"
+keyring = "^23.0.1"
+twine = "^3.4.1"
 
 [tool.poetry.extras]
 test = [
