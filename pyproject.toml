@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "geogif"
-version = "0.1.1"
+version = "0.1.2"
 description = "Render xarray timestacks into GIFs"
 authors = ["Gabe Joseph <gjoseph92@gmail.com>"]
 readme = "README.md"
