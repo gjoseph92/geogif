@@ -4,7 +4,7 @@ from .gif import dgif, gif
 # Note that this will be incorrect for local installs
 import importlib.metadata
 
-__version__ = importlib.metadata.version("stackstac")
+__version__ = importlib.metadata.version("geogif")
 del importlib
 
 

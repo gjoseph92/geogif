@@ -2450,7 +2450,7 @@ test = ["pytest", "hypothesis", "ipython"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "9ecb318362ccfe00fba5977e02490bfd856fd707856bc1b66187ce5fa738106d"
+content-hash = "4e4dd76a0b34d24c2ef74f9212420a7ff7664c3af76383a2a9de5d34e651b57d"
 
 [metadata.files]
 affine = [
