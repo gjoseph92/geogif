@@ -9,7 +9,7 @@ homepage = "https://geogif.readthedocs.io/en/latest/index.html"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-dask = {extras = ["delayed"], version = ">= 2021.4.1, < 2023"}
+dask = {extras = ["delayed"], version = ">= 2021.4.1"}
 numpy = "^1.20.2"
 Pillow = "^9.0.1"
 matplotlib = "^3.4.1"
