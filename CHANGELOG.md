@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.4 (2023-02-09)
+* Support `dask` calver
+
 ## 0.1.3 (2022-03-16)
 * Support `xarray` calver
 * Require Pillow > 9.0.1
