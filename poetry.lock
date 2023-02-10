@@ -3416,17 +3416,6 @@ test = ["Sphinx (>=3.2.0)", "dataclasses", "pytest (>=3.1.0)", "sphobjinv (>=2.0
 type-comments = ["typed-ast (>=1.4.0)"]
 
 [[package]]
-name = "sphinx-paramlinks"
-version = "0.5.4"
-description = "Allows param links in Sphinx function/method descriptions to be linkable"
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "sphinx-paramlinks-0.5.4.tar.gz", hash = "sha256:9f7bffa9f4197aa60369058c0a13ca5e7aa938e84c0643e300d341bbe2f4958a"},
-]
-
-[[package]]
 name = "sphinxcontrib-applehelp"
 version = "1.0.2"
 description = "sphinxcontrib-applehelp is a sphinx extension which outputs Apple help books"
@@ -4070,4 +4059,4 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "da393007af03dbb249433b4a6e0c48372dc5141baa715b1399f1ad1ec370651f"
+content-hash = "8dc1bf5ab53f98cf9dbe8aee218d28258261b1bfac7983fa7000c54db93003cd"

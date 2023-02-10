@@ -43,7 +43,6 @@ distributed = ">= 2021.4.1, < 2023"
 pystac-client = "^0"
 furo = "^2021.4.11-beta.34"
 stackstac = "^0"
-sphinx-paramlinks = "^0.5.4"
 
 
 [build-system]
