@@ -36,7 +36,7 @@ GeoGIF is managed by [Poetry](https://python-poetry.org/), so be sure that's ins
 
 ```bash
 cd geogif
-poetry install -E tests -E docs
+poetry install
 ```
 
 ### Running Tests
