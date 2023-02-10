@@ -44,6 +44,7 @@ templates_path = ["_templates"]
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+paramlinks_hyperlink_param = 'name'
 autosummary_generate = True
 napoleon_use_param = True
 # set_type_checking_flag = True
