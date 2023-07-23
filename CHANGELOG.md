@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5 (2023-07-23)
+* Fix `RuntimeError: getsize is deprecated and should be removed` with newer Pillow versions
+* Require Pillow > 10.0.0
+* Error immediately when trying to make a GIF of an empty array
+
 ## 0.1.4 (2023-02-09)
 * Support `dask` calver
 
