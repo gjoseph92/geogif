@@ -35,6 +35,9 @@ def _validate_arr_for_gif(
     if arr.shape[1] not in (1, 3):
         raise ValueError(f"Array must have 1 or 3 bands, not {arr.shape[1]}")
 
+    if arr.size == 0:
+        raise ValueError("Array is empty")
+
     if arr.shape[1] == 1:
         cmap = (
             # this will use the default colormap (usually viridis) if it's None
