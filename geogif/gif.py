@@ -211,7 +211,9 @@ def gif(
             d = cast(ImageDraw.ImageDraw, d)
 
             width, height = img.size
-            t_width, t_height = fnt.getsize(label)
+            t_bbox = fnt.getbbox(label)
+            t_width = t_bbox[2] - t_bbox[0]
+            t_height = t_bbox[3] - t_bbox[1]
 
             offset = 15
             if date_position[0] == "u":
