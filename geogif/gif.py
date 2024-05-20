@@ -207,7 +207,24 @@ def gif(
         time_coord = arr[arr.dims[0]]
         labels = time_coord.dt.strftime(date_format).data
 
-        fnt = ImageFont.load_default()
+        # default font size to start
+        fontsize = 6
+
+        # load up default font
+        fnt = ImageFont.load_default(size = fontsize)
+
+        # grab first label and image to test
+        test_label, test_img = labels[0], imgs[0]
+
+        # this could be a user defined value
+        img_fraction = 0.1
+
+        # increment font until you get large enough font
+        while fnt.getbbox(test_label)[2] < img_fraction*test_img.size[0]:
+            # iterate until the text size is just larger than the criteria
+            fontsize += 1
+            fnt = ImageFont.load_default(fontsize)
+
         for label, img in zip(labels, imgs):
             # get a drawing context
             d = ImageDraw.Draw(img)
@@ -230,7 +247,8 @@ def gif(
                 x = width - t_width - offset
 
             if date_bg:
-                d.rectangle((x, y, x + t_width, y + t_height), fill=date_bg)
+                # added a 1.6 ratio increase for height to ensure text is fully covered
+                d.rectangle((x, y, x + t_width, y + t_height * 1.6), fill=date_bg)
             # draw text
             d.multiline_text((x, y), label, font=fnt, fill=date_color)
 
