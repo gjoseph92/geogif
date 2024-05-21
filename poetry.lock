@@ -362,31 +362,48 @@ lxml = ["lxml"]
 
 [[package]]
 name = "black"
-version = "21.12b0"
+version = "24.4.2"
 description = "The uncompromising code formatter."
 optional = false
-python-versions = ">=3.6.2"
+python-versions = ">=3.8"
 files = [
-    {file = "black-21.12b0-py3-none-any.whl", hash = "sha256:a615e69ae185e08fdd73e4715e260e2479c861b5740057fde6e8b4e3b7dd589f"},
-    {file = "black-21.12b0.tar.gz", hash = "sha256:77b80f693a569e2e527958459634f18df9b0ba2625ba4e0c2d5da5be42e6f2b3"},
+    {file = "black-24.4.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:dd1b5a14e417189db4c7b64a6540f31730713d173f0b63e55fabd52d61d8fdce"},
+    {file = "black-24.4.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:8e537d281831ad0e71007dcdcbe50a71470b978c453fa41ce77186bbe0ed6021"},
+    {file = "black-24.4.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:eaea3008c281f1038edb473c1aa8ed8143a5535ff18f978a318f10302b254063"},
+    {file = "black-24.4.2-cp310-cp310-win_amd64.whl", hash = "sha256:7768a0dbf16a39aa5e9a3ded568bb545c8c2727396d063bbaf847df05b08cd96"},
+    {file = "black-24.4.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:257d724c2c9b1660f353b36c802ccece186a30accc7742c176d29c146df6e474"},
+    {file = "black-24.4.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:bdde6f877a18f24844e381d45e9947a49e97933573ac9d4345399be37621e26c"},
+    {file = "black-24.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e151054aa00bad1f4e1f04919542885f89f5f7d086b8a59e5000e6c616896ffb"},
+    {file = "black-24.4.2-cp311-cp311-win_amd64.whl", hash = "sha256:7e122b1c4fb252fd85df3ca93578732b4749d9be076593076ef4d07a0233c3e1"},
+    {file = "black-24.4.2-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:accf49e151c8ed2c0cdc528691838afd217c50412534e876a19270fea1e28e2d"},
+    {file = "black-24.4.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:88c57dc656038f1ab9f92b3eb5335ee9b021412feaa46330d5eba4e51fe49b04"},
+    {file = "black-24.4.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:be8bef99eb46d5021bf053114442914baeb3649a89dc5f3a555c88737e5e98fc"},
+    {file = "black-24.4.2-cp312-cp312-win_amd64.whl", hash = "sha256:415e686e87dbbe6f4cd5ef0fbf764af7b89f9057b97c908742b6008cc554b9c0"},
+    {file = "black-24.4.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:bf10f7310db693bb62692609b397e8d67257c55f949abde4c67f9cc574492cc7"},
+    {file = "black-24.4.2-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:98e123f1d5cfd42f886624d84464f7756f60ff6eab89ae845210631714f6db94"},
+    {file = "black-24.4.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:48a85f2cb5e6799a9ef05347b476cce6c182d6c71ee36925a6c194d074336ef8"},
+    {file = "black-24.4.2-cp38-cp38-win_amd64.whl", hash = "sha256:b1530ae42e9d6d5b670a34db49a94115a64596bc77710b1d05e9801e62ca0a7c"},
+    {file = "black-24.4.2-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:37aae07b029fa0174d39daf02748b379399b909652a806e5708199bd93899da1"},
+    {file = "black-24.4.2-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:da33a1a5e49c4122ccdfd56cd021ff1ebc4a1ec4e2d01594fef9b6f267a9e741"},
+    {file = "black-24.4.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ef703f83fc32e131e9bcc0a5094cfe85599e7109f896fe8bc96cc402f3eb4b6e"},
+    {file = "black-24.4.2-cp39-cp39-win_amd64.whl", hash = "sha256:b9176b9832e84308818a99a561e90aa479e73c523b3f77afd07913380ae2eab7"},
+    {file = "black-24.4.2-py3-none-any.whl", hash = "sha256:d36ed1124bb81b32f8614555b34cc4259c3fbc7eec17870e8ff8ded335b58d8c"},
+    {file = "black-24.4.2.tar.gz", hash = "sha256:c872b53057f000085da66a19c55d68f6f8ddcac2642392ad3a355878406fbd4d"},
 ]
 
 [package.dependencies]
-click = ">=7.1.2"
+click = ">=8.0.0"
 mypy-extensions = ">=0.4.3"
-pathspec = ">=0.9.0,<1"
+packaging = ">=22.0"
+pathspec = ">=0.9.0"
 platformdirs = ">=2"
-tomli = ">=0.2.6,<2.0.0"
-typing-extensions = [
-    {version = ">=3.10.0.0,<3.10.0.1 || >3.10.0.1", markers = "python_version >= \"3.10\""},
-    {version = ">=3.10.0.0", markers = "python_version < \"3.10\""},
-]
+tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
+typing-extensions = {version = ">=4.0.1", markers = "python_version < \"3.11\""}
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
-d = ["aiohttp (>=3.7.4)"]
+d = ["aiohttp (>=3.7.4)", "aiohttp (>=3.7.4,!=3.9.0)"]
 jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
-python2 = ["typed-ast (>=1.4.3)"]
 uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
@@ -649,14 +666,17 @@ unicode-backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
-version = "7.1.2"
+version = "8.1.7"
 description = "Composable command line interface toolkit"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.7"
 files = [
-    {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
-    {file = "click-7.1.2.tar.gz", hash = "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"},
+    {file = "click-8.1.7-py3-none-any.whl", hash = "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28"},
+    {file = "click-8.1.7.tar.gz", hash = "sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de"},
 ]
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "click-plugins"
@@ -1647,13 +1667,41 @@ regex = ["regex"]
 
 [[package]]
 name = "libcst"
-version = "0.3.23"
-description = "A concrete syntax tree with AST-like properties for Python 3.5, 3.6, 3.7 and 3.8 programs."
+version = "0.4.10"
+description = "A concrete syntax tree with AST-like properties for Python 3.5, 3.6, 3.7, 3.8, 3.9, and 3.10 programs."
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "libcst-0.3.23-py3-none-any.whl", hash = "sha256:2e1f77fbaaff93b889376c92f588b718edbdc21f956abbe27d10dfd1ff2d76c3"},
-    {file = "libcst-0.3.23.tar.gz", hash = "sha256:330f9082a309bad808e283e80845a843200303bb256690185b98ca458a62c4f8"},
+    {file = "libcst-0.4.10-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:8fa0ec646ed7bce984d0ee9dbf514af278050bdb16a4fb986e916ace534eebc6"},
+    {file = "libcst-0.4.10-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:3cb3b7821eac00713844cda079583230c546a589b22ed5f03f2ddc4f985c384b"},
+    {file = "libcst-0.4.10-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e7acfa747112ae40b032739661abd7c81aff37191294f7c2dab8bbd72372e78f"},
+    {file = "libcst-0.4.10-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1312e293b864ef3cb4b09534ed5f104c2dc45b680233c68bf76237295041c781"},
+    {file = "libcst-0.4.10-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:76884b1afe475e8e68e704bf26eb9f9a2867029643e58f2f26a0286e3b6e998e"},
+    {file = "libcst-0.4.10-cp310-cp310-win_amd64.whl", hash = "sha256:1069b808a711db5cd47538f27eb2c73206317aa0d8b5a3500b23aab24f86eb2e"},
+    {file = "libcst-0.4.10-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:50be085346a35812535c7f876319689e15a7bfd1bd8efae8fd70589281d944b6"},
+    {file = "libcst-0.4.10-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:bb9f10e5763e361e8bd8ff765fc0f1bcf744f242ff8b6d3e50ffec4dda3972ac"},
+    {file = "libcst-0.4.10-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:cfeeabb528b5df7b4be1817b584ce79e9a1a66687bd72f6de9c22272462812f1"},
+    {file = "libcst-0.4.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5648aeae8c90a2abab1f7b1bf205769a0179ed2cfe1ea7f681f6885e87b8b193"},
+    {file = "libcst-0.4.10-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:a144f20aff4643b00374facf8409d30c7935db8176e5b2a07e1fd44004db2c1f"},
+    {file = "libcst-0.4.10-cp311-cp311-win_amd64.whl", hash = "sha256:a10adc2e8ea2dda2b70eabec631ead2fc4a7a7ab633d6c2b690823c698b8431a"},
+    {file = "libcst-0.4.10-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:58fe90458a26a55358207f74abf8a05dff51d662069f070b4bd308a000a80c09"},
+    {file = "libcst-0.4.10-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:999fbbe467f61cbce9e6e054f86cd1c5ffa3740fd3dc8ebdd600db379f699256"},
+    {file = "libcst-0.4.10-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:83ee7e7be4efac4c140a97d772e1f6b3553f98fa5f46ad78df5dfe51e5a4aa4d"},
+    {file = "libcst-0.4.10-cp37-cp37m-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:158478e8f45578fb26621b3dc0fe275f9e004297e9afdcf08936ecda05681174"},
+    {file = "libcst-0.4.10-cp37-cp37m-win_amd64.whl", hash = "sha256:5ed101fee1af7abea3684fcff7fab5b170ceea4040756f54c15c870539daec66"},
+    {file = "libcst-0.4.10-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:349f2b4ee4b982fe254c65c78d941fc96299f3c422b79f95ef8c7bba2b7f0f90"},
+    {file = "libcst-0.4.10-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:7cfa4d4beb84d0d63247aca27f1a15c63984512274c5b23040f8b4ba511036d7"},
+    {file = "libcst-0.4.10-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:24582506da24e31f2644f862f11413a6b80fbad68d15194bfcc3f7dfebf2ec5e"},
+    {file = "libcst-0.4.10-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8cdf2d0157438d3d52d310b0b6be31ff99bed19de489b2ebd3e2a4cd9946da45"},
+    {file = "libcst-0.4.10-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:a677103d2f1ab0e50bc3a7cc6c96c7d64bcbac826d785e4cbf5ee9aaa9fcfa25"},
+    {file = "libcst-0.4.10-cp38-cp38-win_amd64.whl", hash = "sha256:a8fdfd4a7d301adb785aa4b98e4a7cca45c5ff8cfb460b485d081efcfaaeeab7"},
+    {file = "libcst-0.4.10-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:b1569d87536bed4e9c11dd5c94a137dc0bce2a2b05961489c6016bf4521bb7cf"},
+    {file = "libcst-0.4.10-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:72dff8783ac79cd10f2bd2fde0b28f262e9a22718ae26990948ba6131b85ca8b"},
+    {file = "libcst-0.4.10-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:76adc53660ef094ff83f77a2550a7e00d1cab8e5e63336e071c17c09b5a89fe2"},
+    {file = "libcst-0.4.10-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f3e9d9fdd9a9b9b8991936ff1c07527ce7ef396c8233280ba9a7137e72c2e48e"},
+    {file = "libcst-0.4.10-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:7e1b4cbaf7b1cdad5fa3eababe42d5b46c0d52afe13c5ba4eac2495fc57630ea"},
+    {file = "libcst-0.4.10-cp39-cp39-win_amd64.whl", hash = "sha256:bcbd07cec3d7a7be6f0299b0c246e085e3d6cc8af367e2c96059183b97c2e2fe"},
+    {file = "libcst-0.4.10.tar.gz", hash = "sha256:b98a829d96e8b209fb761b00cd1bacc27c70eae77d00e57976e5ae2c718c3f81"},
 ]
 
 [package.dependencies]
@@ -1662,7 +1710,7 @@ typing-extensions = ">=3.7.4.2"
 typing-inspect = ">=0.4.0"
 
 [package.extras]
-dev = ["black (==21.10b0)", "coverage (>=4.5.4)", "fixit (==0.1.1)", "flake8 (>=3.7.8)", "hypothesis (>=4.36.0)", "hypothesmith (>=0.0.4)", "jupyter (>=1.0.0)", "nbsphinx (>=0.4.2)", "prompt-toolkit (>=2.0.9)", "pyre-check (==0.9.3)", "setuptools-scm (>=6.0.1)", "sphinx-rtd-theme (>=0.4.3)", "tox (>=3.18.1)", "ufmt (==1.2)", "usort (==0.6.3)"]
+dev = ["Sphinx (>=5.1.1)", "black (==23.1.0)", "build (>=0.10.0)", "coverage (>=4.5.4)", "fixit (==0.1.1)", "flake8 (>=3.7.8,<5)", "hypothesis (>=4.36.0)", "hypothesmith (>=0.0.4)", "jinja2 (==3.1.2)", "jupyter (>=1.0.0)", "maturin (>=0.8.3,<0.14)", "nbsphinx (>=0.4.2)", "prompt-toolkit (>=2.0.9)", "pyre-check (==0.9.10)", "setuptools-rust (>=1.5.2)", "setuptools-scm (>=6.0.1)", "slotscheck (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "ufmt (==2.1.0)", "usort (==1.0.6)"]
 
 [[package]]
 name = "livereload"
@@ -2218,17 +2266,14 @@ testing = ["matplotlib", "pytest", "pytest-cov"]
 
 [[package]]
 name = "packaging"
-version = "21.3"
+version = "24.0"
 description = "Core utilities for Python packages"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
-    {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
+    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
+    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
 ]
-
-[package.dependencies]
-pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
 name = "pandas"
@@ -2262,10 +2307,10 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
     {version = ">=1.18.5", markers = "(platform_machine != \"aarch64\" and platform_machine != \"arm64\") and python_version < \"3.10\""},
     {version = ">=1.19.2", markers = "platform_machine == \"aarch64\" and python_version < \"3.10\""},
     {version = ">=1.20.0", markers = "platform_machine == \"arm64\" and python_version < \"3.10\""},
+    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
 ]
 python-dateutil = ">=2.8.1"
 pytz = ">=2020.1"
@@ -2624,19 +2669,19 @@ files = [
 
 [[package]]
 name = "pybetter"
-version = "0.4.0"
+version = "0.4.1"
 description = "Tool for fixing trivial problems with your code."
 optional = false
-python-versions = ">=3.6,<4.0"
+python-versions = ">3.6"
 files = [
-    {file = "pybetter-0.4.0-py3-none-any.whl", hash = "sha256:30bf5ffeb3da627cbd053f4d341085cac1dff57acd35a58c32d1c0d9e14a6033"},
-    {file = "pybetter-0.4.0.tar.gz", hash = "sha256:9d06800f00f3fdf5b5a899dfa7ffbc2f2dab82b30e8cf96cb6c483a0dc9ab357"},
+    {file = "pybetter-0.4.1-py3-none-any.whl", hash = "sha256:c7ea10c23a122922eb78f7a799c5c7b29c8f01dbd7171099891e5e4a47a2e969"},
+    {file = "pybetter-0.4.1.tar.gz", hash = "sha256:b431cf1814935485ab1c69e3d24f1eccde4a4d10f1dadcb9ca1144902b6f9c79"},
 ]
 
 [package.dependencies]
-click = ">=7.0,<8.0"
+click = ">8.0"
 hypothesmith = ">=0.1.8,<0.2.0"
-libcst = ">=0.3.16,<0.4.0"
+libcst = ">=0.4.1,<0.5.0"
 pyemojify = ">=0.2.0,<0.3.0"
 pygments = ">=2.5.2,<3.0.0"
 
@@ -4041,4 +4086,4 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "f6a3723ce3d67aa4bb2ce4d4c652e3288b598bb4e43451d5eb56ba2db09cc68b"
+content-hash = "87dc064ce9001e3007798cf0732de65bdee641b335807847ae71cf501d03a745"

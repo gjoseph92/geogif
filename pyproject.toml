@@ -18,7 +18,7 @@ xarray = ">=0.18"
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "^3.0.14"
 ipython = "^7.23.0"
-black = "^21.4b2"
+black = "^24.4.2"
 flake8 = "^3.9.1"
 shed = "^0.3.4"
 sphinx-autobuild = "^2021.3.14"
