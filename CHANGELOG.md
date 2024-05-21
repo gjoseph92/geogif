@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2 (2024-05-21)
+* Make timestamp font size adjustable, and scale with image size by default
+
 ## 0.1.5 (2023-07-23)
 * Fix `RuntimeError: getsize is deprecated and should be removed` with newer Pillow versions
 * Require Pillow > 10.0.0
