@@ -15,10 +15,16 @@ import xarray as xr
 from hypothesis import given, note, settings
 from typing_extensions import Literal
 
+from geogif.gif import _get_font
 from geogif import dgif, gif
 
 from .strategies import colormaps, dataarrays, date_formats, rgb
 from .util import fails, ignore, xerr
+
+
+def test_get_font_empty():
+    fnt = _get_font(0.1, ["", ""], 5)
+    assert fnt.size > 0
 
 
 @pytest.fixture(scope="module")
@@ -61,6 +67,16 @@ def xerrs(
     date_position=st.sampled_from(["ul", "ur", "ll", "lr"]),
     date_color=rgb,
     date_bg=st.none() | rgb,
+    date_size=st.integers(1, 100)
+    | st.floats(
+        0,
+        1,
+        allow_nan=False,
+        allow_infinity=False,
+        allow_subnormal=False,
+        exclude_min=True,
+        exclude_max=True,
+    ),
 )
 @settings(max_examples=500)
 def test_gif(
@@ -75,6 +91,7 @@ def test_gif(
     date_position: Literal["ul", "ur", "ll", "lr"],
     date_color: tuple[int, int, int],
     date_bg: tuple[int, int, int] | None,
+    date_size: int | float,
     module_tmp_path: Path,
 ):
     if to == "tempfile":
@@ -96,6 +113,7 @@ def test_gif(
             date_position=date_position,
             date_color=date_color,
             date_bg=date_bg,
+            date_size=date_size,
         )
         succeeded = True
 
