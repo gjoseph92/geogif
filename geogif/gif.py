@@ -85,6 +85,47 @@ def _validate_arr_for_gif(
     return (arr, cmap)
 
 
+def _get_font(
+    date_size: int | float, labels: list[str], image_width: int
+) -> ImageFont.ImageFont | ImageFont.FreeTypeFont:
+    """
+    Get an appropriately-sized font for the requested ``date_size``
+
+    When ``date_size`` is a float, figure out a font size that will make the width of the
+    text that fraction of the width of the image.
+    """
+    if isinstance(date_size, int):
+        # absolute font size
+        return ImageFont.load_default(size=date_size)
+
+    target_width = date_size * image_width
+    test_label = max(labels, key=len)
+
+    fnt = ImageFont.load_default(size=5)
+    if isinstance(fnt, ImageFont.FreeTypeFont):
+        # NOTE: if Pillow doesn't have FreeType support, we won't get a font
+        # with adjustable size. So trying to increase the size would just
+        # loop infinitely.
+
+        def text_width(font) -> int:
+            bbox = font.getbbox(test_label)
+            return bbox[2] - bbox[0]
+
+        if text_width(fnt) > 0:
+            # check for zero-width so we don't loop forever.
+            # (could happen if `test_label` is an empty string or non-printable character)
+
+            # increment font until you get large enough text
+            while text_width(fnt) <= target_width:
+                try:
+                    size = fnt.size + 1
+                    fnt = ImageFont.load_default(size)
+                except OSError as e:
+                    raise RuntimeError(f"Invalid font size: {size}") from e
+
+    return fnt
+
+
 def gif(
     arr: xr.DataArray,
     *,
@@ -231,38 +272,7 @@ def gif(
         time_coord = arr[arr.dims[0]]
         labels = time_coord.dt.strftime(date_format).data
 
-        if isinstance(date_size, int):
-            # absolute font size
-            fnt = ImageFont.load_default(size=date_size)
-        else:
-            # font size relative to image size
-
-            # adjust size to fit the longest label
-            test_label = max(labels, key=len)
-            target_width = date_size * imgs[0].size[0]
-
-            fnt = ImageFont.load_default(size=5)
-            if isinstance(fnt, ImageFont.FreeTypeFont):
-                # NOTE: if Pillow doesn't have FreeType support, we won't get a font
-                # with adjustable size. So trying to increase the size would just
-                # loop infinitely.
-
-                def text_width(font) -> int:
-                    bbox = font.getbbox(test_label)
-                    return bbox[2] - bbox[0]
-
-                if text_width(fnt) > 0:
-                    # check for zero-width so we don't loop forever.
-                    # (could happen if `test_label` is an empty string or non-printable character)
-
-                    # increment font until you get large enough text
-                    while text_width(fnt) <= target_width:
-                        try:
-                            s = fnt.size + 1
-                            fnt = ImageFont.load_default(s)
-                        except OSError:
-                            raise RuntimeError(f"broke with {s=}")
-
+        fnt = _get_font(date_size, labels, imgs[0].size[0])
         for label, img in zip(labels, imgs):
             # get a drawing context
             d = ImageDraw.Draw(img)
