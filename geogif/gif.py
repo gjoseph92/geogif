@@ -330,7 +330,7 @@ def dgif(
     arr: xr.DataArray,
     *,
     bytes=False,
-    fps: int = 10,
+    fps: int = 16,
     robust: bool = True,
     vmin: float | None = None,
     vmax: float | None = None,
