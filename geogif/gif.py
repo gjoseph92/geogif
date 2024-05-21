@@ -200,7 +200,7 @@ def gif(
     date_size:
         If a float, make the label this fraction of the width of the image.
         If an int, use this absolute font size for the label.
-        Default: 0.115 (so the label is 15% of the image width).
+        Default: 0.15 (so the label is 15% of the image width).
 
         Note that if Pillow does not have FreeType support, the font size
         cannot be adjusted, and the text will be whatever size Pillow's
