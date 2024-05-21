@@ -98,7 +98,7 @@ def gif(
     date_position: Literal["ul", "ur", "ll", "lr"] = "ul",
     date_color: tuple[int, int, int] = (255, 255, 255),
     date_bg: tuple[int, int, int] | None = (0, 0, 0),
-    date_size: int | float = 0.2,
+    date_size: int | float = 0.15,
 ) -> IPython.display.Image | None:
     """
     Render a `~xarray.DataArray` timestack (``time``, ``band``, ``y``, ``x``) into a GIF.
@@ -159,7 +159,7 @@ def gif(
     date_size:
         If a float, make the label this fraction of the width of the image.
         If an int, use this absolute font size for the label.
-        Default: 0.2 (so the label is 20% of the image width).
+        Default: 0.115 (so the label is 15% of the image width).
 
         Note that if Pillow does not have FreeType support, the font size
         cannot be adjusted, and the text will be whatever size Pillow's
@@ -339,7 +339,7 @@ def dgif(
     date_position: Literal["ul", "ur", "ll", "lr"] = "ul",
     date_color: tuple[int, int, int] = (255, 255, 255),
     date_bg: tuple[int, int, int] | None = (0, 0, 0),
-    date_size: int | float = 0.2,
+    date_size: int | float = 0.15,
 ) -> Delayed:
     """
     Turn a dask-backed `~xarray.DataArray` timestack into a GIF, as a `~dask.delayed.Delayed` object.
@@ -410,7 +410,7 @@ def dgif(
     date_size:
         If a float, make the label this fraction of the width of the image.
         If an int, use this absolute font size for the label.
-        Default: 0.2 (so the label is 20% of the image width).
+        Default: 0.15 (so the label is 15% of the image width).
 
         Note that if Pillow does not have FreeType support, the font size
         cannot be adjusted, and the text will be whatever size Pillow's
