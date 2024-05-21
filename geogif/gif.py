@@ -237,9 +237,9 @@ def gif(
         else:
             # font size relative to image size
 
-            # grab first label and image to test
-            test_label, test_img = labels[0], imgs[0]
-            target_width = date_size * test_img.size[0]
+            # adjust size to fit the longest label
+            test_label = max(labels, key=len)
+            target_width = date_size * imgs[0].size[0]
 
             fnt = ImageFont.load_default(size=5)
             if isinstance(fnt, ImageFont.FreeTypeFont):
@@ -251,9 +251,17 @@ def gif(
                     bbox = font.getbbox(test_label)
                     return bbox[2] - bbox[0]
 
-                # increment font until you get large enough text
-                while text_width(fnt) <= target_width:
-                    fnt = ImageFont.load_default(fnt.size + 1)
+                if text_width(fnt) > 0:
+                    # check for zero-width so we don't loop forever.
+                    # (could happen if `test_label` is an empty string or non-printable character)
+
+                    # increment font until you get large enough text
+                    while text_width(fnt) <= target_width:
+                        try:
+                            s = fnt.size + 1
+                            fnt = ImageFont.load_default(s)
+                        except OSError:
+                            raise RuntimeError(f"broke with {s=}")
 
         for label, img in zip(labels, imgs):
             # get a drawing context
