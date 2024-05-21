@@ -24,6 +24,7 @@ def _validate_arr_for_gif(
     cmap: str | matplotlib.colors.Colormap | None,
     date_format: str | None,
     date_position: Literal["ul", "ur", "ll", "lr"],
+    date_size: int | float = 0.1,
 ) -> tuple[xr.DataArray, matplotlib.colors.Colormap | None]:
     if arr.ndim not in (3, 4):
         raise ValueError(
@@ -60,12 +61,26 @@ def _validate_arr_for_gif(
                 f"Coordinates for the {time_coord.name} dimension are not datetimes, or don't support `strftime`. "
                 "Set `date_format=False`"
             )
-        assert date_position in (
-            "ul",
-            "ur",
-            "ll",
-            "lr",
+        assert (
+            date_position
+            in (
+                "ul",
+                "ur",
+                "ll",
+                "lr",
+            )
         ), f"date_position must be one of ('ul', 'ur', 'll', 'lr'), not {date_position}."
+
+        if isinstance(date_size, int):
+            assert date_size > 0, f"date_size must be >0, not {date_size}"
+        elif isinstance(date_size, float):
+            assert (
+                0 < date_size < 1
+            ), f"date_size must be greater than 0 and less than 1, not {date_size}"
+        else:
+            raise TypeError(
+                f"date_size must be int or float, not {type(date_size)}: {date_size}"
+            )
 
     return (arr, cmap)
 
@@ -83,6 +98,7 @@ def gif(
     date_position: Literal["ul", "ur", "ll", "lr"] = "ul",
     date_color: tuple[int, int, int] = (255, 255, 255),
     date_bg: tuple[int, int, int] | None = (0, 0, 0),
+    date_size: int | float = 0.2,
 ) -> IPython.display.Image | None:
     """
     Render a `~xarray.DataArray` timestack (``time``, ``band``, ``y``, ``x``) into a GIF.
@@ -140,6 +156,14 @@ def gif(
     date_bg:
         Fill color to draw behind the timestamp (for legibility), as an RGB 3-tuple.
         Default: ``(0, 0, 0)`` (black). Set to None to disable.
+    date_size:
+        If a float, make the label this fraction of the width of the image.
+        If an int, use this absolute font size for the label.
+        Default: 0.2 (so the label is 20% of the image width).
+
+        Note that if Pillow does not have FreeType support, the font size
+        cannot be adjusted, and the text will be whatever size Pillow's
+        default basic font is (usually rather small).
 
     Returns
     -------
@@ -167,7 +191,7 @@ def gif(
     if isinstance(arr.data, da.Array):
         raise TypeError("DataArray contains delayed data; use `dgif` instead.")
 
-    arr, cmap = _validate_arr_for_gif(arr, cmap, date_format, date_position)
+    arr, cmap = _validate_arr_for_gif(arr, cmap, date_format, date_position, date_size)
 
     # Rescale
     if arr.dtype.kind == "b":
@@ -207,23 +231,29 @@ def gif(
         time_coord = arr[arr.dims[0]]
         labels = time_coord.dt.strftime(date_format).data
 
-        # default font size to start
-        fontsize = 6
+        if isinstance(date_size, int):
+            # absolute font size
+            fnt = ImageFont.load_default(size=date_size)
+        else:
+            # font size relative to image size
 
-        # load up default font
-        fnt = ImageFont.load_default(size = fontsize)
+            # grab first label and image to test
+            test_label, test_img = labels[0], imgs[0]
+            target_width = date_size * test_img.size[0]
 
-        # grab first label and image to test
-        test_label, test_img = labels[0], imgs[0]
+            fnt = ImageFont.load_default(size=5)
+            if isinstance(fnt, ImageFont.FreeTypeFont):
+                # NOTE: if Pillow doesn't have FreeType support, we won't get a font
+                # with adjustable size. So trying to increase the size would just
+                # loop infinitely.
 
-        # this could be a user defined value
-        img_fraction = 0.1
+                def text_width(font) -> int:
+                    bbox = font.getbbox(test_label)
+                    return bbox[2] - bbox[0]
 
-        # increment font until you get large enough font
-        while fnt.getbbox(test_label)[2] < img_fraction*test_img.size[0]:
-            # iterate until the text size is just larger than the criteria
-            fontsize += 1
-            fnt = ImageFont.load_default(fontsize)
+                # increment font until you get large enough text
+                while text_width(fnt) <= target_width:
+                    fnt = ImageFont.load_default(fnt.size + 1)
 
         for label, img in zip(labels, imgs):
             # get a drawing context
@@ -247,10 +277,18 @@ def gif(
                 x = width - t_width - offset
 
             if date_bg:
-                # added a 1.6 ratio increase for height to ensure text is fully covered
-                d.rectangle((x, y, x + t_width, y + t_height * 1.6), fill=date_bg)
-            # draw text
-            d.multiline_text((x, y), label, font=fnt, fill=date_color)
+                pad = 0.1 * t_height  # looks nicer
+                d.rectangle(
+                    (x - pad, y - pad, x + t_width + pad, y + t_height + pad),
+                    fill=date_bg,
+                )
+
+            # NOTE: sometimes the text seems to incorporate its own internal offset.
+            # This will show up in the first two coordinates of `t_bbox`, so we
+            # "de-offset" by these to make the rectangle and text align.
+            d.multiline_text(
+                (x - t_bbox[0], y - t_bbox[1]), label, font=fnt, fill=date_color
+            )
 
     out = to if to is not None else io.BytesIO()
     imgs[0].save(
@@ -262,7 +300,7 @@ def gif(
         loop=False,
     )
     if to is None and isinstance(out, io.BytesIO):
-        # second `isinstace` is just for the typechecker
+        # second `isinstance` is just for the typechecker
         try:
             import IPython.display
         except ImportError:
@@ -301,6 +339,7 @@ def dgif(
     date_position: Literal["ul", "ur", "ll", "lr"] = "ul",
     date_color: tuple[int, int, int] = (255, 255, 255),
     date_bg: tuple[int, int, int] | None = (0, 0, 0),
+    date_size: int | float = 0.2,
 ) -> Delayed:
     """
     Turn a dask-backed `~xarray.DataArray` timestack into a GIF, as a `~dask.delayed.Delayed` object.
@@ -368,6 +407,14 @@ def dgif(
     date_bg:
         Fill color to draw behind the timestamp (for legibility), as an RGB 3-tuple.
         Default: ``(0, 0, 0)`` (black). Set to None to disable.
+    date_size:
+        If a float, make the label this fraction of the width of the image.
+        If an int, use this absolute font size for the label.
+        Default: 0.2 (so the label is 20% of the image width).
+
+        Note that if Pillow does not have FreeType support, the font size
+        cannot be adjusted, and the text will be whatever size Pillow's
+        default basic font is (usually rather small).
 
     Returns
     -------
@@ -399,7 +446,7 @@ def dgif(
         )
 
     # Do some quick sanity checks to save you a lot of compute
-    _validate_arr_for_gif(arr, cmap, date_format, date_position)
+    _validate_arr_for_gif(arr, cmap, date_format, date_position, date_size)
 
     if not bytes:
         try:
@@ -432,4 +479,5 @@ def dgif(
         date_position=date_position,
         date_color=date_color,
         date_bg=date_bg,
+        date_size=date_size,
     )
