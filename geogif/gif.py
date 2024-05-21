@@ -24,7 +24,7 @@ def _validate_arr_for_gif(
     cmap: str | matplotlib.colors.Colormap | None,
     date_format: str | None,
     date_position: Literal["ul", "ur", "ll", "lr"],
-    date_size: int | float = 0.1,
+    date_size: int | float,
 ) -> tuple[xr.DataArray, matplotlib.colors.Colormap | None]:
     if arr.ndim not in (3, 4):
         raise ValueError(
