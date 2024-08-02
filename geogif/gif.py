@@ -218,14 +218,14 @@ def gif(
     Example
     -------
     >>> # Generate a GIF and show it in your notebook:
-    >>> stackstac.gif(arr, date_format="Year: %Y")
+    >>> geogif.gif(arr, date_format="Year: %Y")
 
     >>> # Write the GIF to a file, with no timestamp printed:
-    >>> stackstac.gif(arr, to="animation.gif", fps=24, date_format=None)
+    >>> geogif.gif(arr, to="animation.gif", fps=24, date_format=None)
 
     >>> # Show a colormapped GIF of single-band data in your notebook,
     >>> # with the timestamp font in black and no background behind it:
-    >>> stackstac.gif(
+    >>> geogif.gif(
     ...     arr.sel(band="ndvi"), cmap="YlGn", date_color=(0, 0, 0), date_bg=None
     ... )
     """
@@ -443,10 +443,10 @@ def dgif(
     Examples
     --------
     >>> # Compute a GIF on the cluster and show it in your notebook:
-    >>> stackstac.dgif(arr, date_format="Year: %Y").compute()
+    >>> geogif.dgif(arr, date_format="Year: %Y").compute()
 
     >>> # Compute a GIF on the cluster, get back the bytes, and write them to a file:
-    >>> gif_data = stackstac.dgif(arr, bytes=True).compute()
+    >>> gif_data = geogif.dgif(arr, bytes=True).compute()
     >>> with open("animation.gif", "wb") as f:
     ...     f.write(gif_data)
 
@@ -454,7 +454,7 @@ def dgif(
     >>> import fsspec
     >>> import dask.delayed
     >>> bucket = dask.delayed(fsspec.get_mapper('s3://my-sweet-gifs/latest'))
-    >>> gif = stackstac.dgif(arr, bytes=True)
+    >>> gif = geogif.dgif(arr, bytes=True)
     >>> bucket.setitems({"neat.gif": gif}).compute()
     """
 
