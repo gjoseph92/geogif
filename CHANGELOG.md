@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3 (2025-01-24)
+* Prevent frames with NaNs from drawing over the previous frame [@lauramazzaro](https://github.com/lauramazzaro)
+
 ## 0.2 (2024-05-21)
 * Make timestamp font size adjustable, and scale with image size by default
 
