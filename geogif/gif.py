@@ -316,6 +316,7 @@ def gif(
         append_images=imgs[1:],
         duration=1 / fps * 1000,  # ms
         loop=False,
+        disposal=2,
     )
     if to is None and isinstance(out, io.BytesIO):
         # second `isinstance` is just for the typechecker
